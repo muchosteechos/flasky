@@ -1,6 +1,8 @@
 from datetime import datetime
+import os
 
 from flask import Flask, render_template, session, redirect, url_for, flash
+from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_wtf import FlaskForm
@@ -12,7 +14,12 @@ from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard to guess string'
+app.config['SQLALCHEMY_DATABASE_URI'] = ('sqlite:///' + 
+                                         os.path.join(basedir, 'data.sqlite'))
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 bootstrap = Bootstrap(app)
+db = SQLAlchemy(app)
 moment = Moment(app)
 
 
