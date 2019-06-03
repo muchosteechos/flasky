@@ -67,7 +67,7 @@ def index():
         'index.html', 
         form=form,
         name=session.get('name'),
-        known=session.get('known', False))
+        known=session.get('known', False),
     )
 
 
